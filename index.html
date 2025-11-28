@@ -44,87 +44,36 @@ body { margin:0; padding:0; background:#0a0a0a; color:#0ff; font-family:'Segoe U
 </div>
 
 <script>
-let config = null;
+// Прогрузка сайта 4 секунды
+setTimeout(() => {
+    document.getElementById('loader').style.display='none';
+    document.getElementById('mainContainer').style.display='block';
+}, 4000);
 
-// Загружаем cfg.json с GitHub Raw URL
-async function loadConfig() {
-    try {
-        const res = await fetch('https://raw.githubusercontent.com/v3x-m3sh/v3x-m3sh.github.io/main/cfg.json');
-        if(!res.ok) throw new Error('Config not found');
-        config = await res.json();
-    } catch(e) {
-        console.warn("Ошибка загрузки cfg.json, применяем дефолт:", e.message);
-        config = { enabled:false, Site:false, Discord:false, Telegram:false, Idk:false };
-    }
-}
+// Настройка кнопок
+const settingsBtn = document.getElementById('settingsBtn');
+const discordBtn = document.getElementById('discordBtn');
+const telegramBtn = document.getElementById('telegramBtn');
+const idkBtn = document.getElementById('idkBtn');
+const gotScriptBtn = document.getElementById('gotScriptBtn');
+const scriptBox = document.getElementById('scriptBox');
+const errorMsg = document.getElementById('errorMsg');
 
-// Инициализация сайта с прогрузкой 4 сек
-async function initSite() {
-    await loadConfig();
-    setTimeout(() => {
-        const loader = document.getElementById('loader');
-        const container = document.getElementById('mainContainer');
-        loader.style.display = 'none';
-        if(config.enabled && config.Site){
-            container.style.display = 'block';
-            setupButtons();
-        } else {
-            container.innerHTML = "<h1 style='color:red;'>Site disabled in config</h1>";
-            container.style.display='block';
-        }
-    }, 4000);
-}
+settingsBtn.onclick = () => alert("Error 401: Недоступно");
 
-// Настройка кнопок с учётом конфигурации
-function setupButtons(){
-    const discordBtn = document.getElementById('discordBtn');
-    const telegramBtn = document.getElementById('telegramBtn');
-    const idkBtn = document.getElementById('idkBtn');
-    const gotScriptBtn = document.getElementById('gotScriptBtn');
-    const scriptBox = document.getElementById('scriptBox');
-    const settingsBtn = document.getElementById('settingsBtn');
+// Discord
+discordBtn.onclick = () => fadeAndRedirect('https://discord.gg/2myNawMhHa');
+// Telegram
+telegramBtn.onclick = () => fadeAndRedirect('https://t.me/spare_link');
+// idk
+idkBtn.onclick = () => alert('idk pressed!');
 
-    const errorMsg = document.getElementById('errorMsg');
-
-    settingsBtn.onclick = () => alert("Error 401: Недоступно");
-
-    discordBtn.onclick = () => {
-        if(config.Discord){
-            fadeAndRedirect('https://discord.gg/2myNawMhHa');
-        } else showError();
-    }
-
-    telegramBtn.onclick = () => {
-        if(config.Telegram){
-            fadeAndRedirect('https://t.me/spare_link');
-        } else showError();
-    }
-
-    idkBtn.onclick = () => {
-        if(config.Idk) alert('idk pressed!');
-        else showError();
-    }
-
-    let scriptVisible = false;
-    gotScriptBtn.onclick = () => {
-        scriptVisible = !scriptVisible;
-        scriptBox.style.display = scriptVisible ? 'block' : 'none';
-        if(scriptVisible) scriptBox.scrollIntoView({behavior:"smooth"});
-    }
-}
-
-// Анимация и редирект
-function fadeAndRedirect(url){
-    document.querySelectorAll('.btn').forEach(b => b.classList.add('fade-out'));
-    setTimeout(()=> window.location.href = url, 500);
-}
-
-// Показ ошибки для отключённых функций
-function showError(){
-    const errorMsg = document.getElementById('errorMsg');
-    errorMsg.innerText = "This function is not available.\n(Maybe Site/html on update xD)";
-    errorMsg.style.display = 'block';
-    setTimeout(()=>{ errorMsg.style.display='none'; },3000);
+// Got Script
+let scriptVisible = false;
+gotScriptBtn.onclick = () => {
+    scriptVisible = !scriptVisible;
+    scriptBox.style.display = scriptVisible ? 'block' : 'none';
+    if(scriptVisible) scriptBox.scrollIntoView({behavior:"smooth"});
 }
 
 // Копирование скрипта
@@ -135,8 +84,11 @@ function copyScript(){
         .catch(()=>alert('Ошибка копирования'));
 }
 
-// Запуск
-initSite();
+// Анимация исчезания + редирект
+function fadeAndRedirect(url){
+    document.querySelectorAll('.btn').forEach(b => b.classList.add('fade-out'));
+    setTimeout(()=> window.location.href = url, 500);
+}
 </script>
 
 </body>
