@@ -4,19 +4,118 @@
 <meta charset="UTF-8">
 <title>V3X Eclipse Portal</title>
 <style>
-body { margin:0; padding:0; background:#0a0a0a; color:#0ff; font-family:'Segoe UI',sans-serif; display:flex; justify-content:center; align-items:center; height:100vh; overflow:hidden; }
-.loader { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:32px; text-shadow:0 0 20px #0ff; }
-.container { display:none; width:90%; max-width:1000px; text-align:center; position:relative; }
-.settings { position:absolute; top:20px; left:20px; background:#111; color:#0ff; padding:10px 20px; border:none; cursor:pointer; border-radius:8px; box-shadow:0 0 10px #0ff; transition:0.3s; }
-.settings:hover { background:#222; }
-.buttons { display:flex; justify-content:space-around; margin-top:100px; flex-wrap:wrap; gap:20px; }
-.btn { background:#111; color:#0ff; padding:20px 40px; border:none; border-radius:12px; font-size:18px; cursor:pointer; box-shadow:0 0 15px #0ff; transition:0.3s; flex:1; min-width:150px; position:relative; }
-.btn:hover { transform: scale(1.05); box-shadow:0 0 25px #0ff; }
-.script-box { display:none; margin-top:20px; background:#111; padding:15px; border-radius:10px; color:#0ff; font-family: monospace; font-size:14px; position:relative; }
-.copy-btn { position:absolute; right:10px; top:10px; background:#0ff; color:#000; border:none; padding:5px 10px; cursor:pointer; border-radius:5px; font-weight:bold; }
+/* Переливающийся градиент на фоне */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(137,63,217,1) 7%, rgba(90,41,142,1) 9%, rgba(0,0,0,1) 18%, rgba(4,4,192,1) 26%, rgba(5,5,255,1) 14%, rgba(0,0,0,1) 40%, rgba(0,0,0,1) 72%, rgba(0,0,0,1) 100%);
+    background-size: 200% 200%;
+    animation: gradientAnim 10s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+@keyframes gradientAnim {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    color: #0ff;
+    text-shadow: 0 0 20px #0ff;
+}
+
+.container { 
+    display: none; 
+    width: 90%; 
+    max-width: 1200px; 
+    text-align: center; 
+    position: relative; 
+}
+
+/* Настройки слева сверху */
+.settings {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(17,17,17,0.8);
+    color: #0ff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px #0ff;
+    transition: 0.3s;
+}
+.settings:hover { background: rgba(34,34,34,0.8); }
+
+/* Контейнер кнопок */
+.buttons {
+    margin-top: 120px; /* отступ сверху */
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Кнопки футуристические, большие */
+.btn {
+    background: rgba(17,17,17,0.8);
+    color: #0ff;
+    padding: 25px 50px;
+    font-size: 22px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px #0ff;
+    transition: 0.3s;
+    min-width: 200px;
+}
+.btn:hover { transform: scale(1.1); box-shadow: 0 0 35px #0ff; }
+
+.script-box {
+    display: none;
+    margin-top: 20px;
+    background: rgba(17,17,17,0.8);
+    padding: 15px;
+    border-radius: 10px;
+    color: #0ff;
+    font-family: monospace;
+    font-size: 16px;
+    position: relative;
+}
+
+.copy-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background:#0ff;
+    color:#000;
+    border:none;
+    padding:5px 10px;
+    cursor:pointer;
+    border-radius:5px;
+    font-weight:bold;
+}
+
 .fade-out { animation: fadeOut 0.5s forwards; }
 @keyframes fadeOut { to { opacity:0; transform:scale(0.8); } }
-.error-msg { color:red; font-size:16px; margin-top:10px; font-weight:bold; }
+
+.error-msg { 
+    color:red; 
+    font-size:16px; 
+    margin-top:10px; 
+    font-weight:bold; 
+}
 </style>
 </head>
 <body>
@@ -44,12 +143,12 @@ body { margin:0; padding:0; background:#0a0a0a; color:#0ff; font-family:'Segoe U
 </div>
 
 <script>
-// Переменные включения кнопок
-const discordEnabled = false;   // false = кнопка Discord не редиректит
-const telegramEnabled = false;  // false = кнопка Telegram не редиректит
-const idkEnabled = true;        // true = кнопка idk работает
+// Включение/выключение кнопок
+const discordEnabled = false;
+const telegramEnabled = false;
+const idkEnabled = true;
 
-// Прогрузка сайта 4 секунды
+// Прогрузка сайта 4 сек
 setTimeout(() => {
     document.getElementById('loader').style.display='none';
     document.getElementById('mainContainer').style.display='block';
@@ -66,18 +165,21 @@ const errorMsg = document.getElementById('errorMsg');
 
 settingsBtn.onclick = () => alert("Error 401: Недоступно");
 
+// Discord
 discordBtn.onclick = () => {
     if(discordEnabled){
         fadeAndRedirect('https://discord.gg/2myNawMhHa');
     } else showError();
 }
 
+// Telegram
 telegramBtn.onclick = () => {
     if(telegramEnabled){
         fadeAndRedirect('https://t.me/spare_link');
     } else showError();
 }
 
+// idk
 idkBtn.onclick = () => {
     if(idkEnabled) alert('idk pressed!');
     else showError();
