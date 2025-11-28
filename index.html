@@ -44,6 +44,11 @@ body { margin:0; padding:0; background:#0a0a0a; color:#0ff; font-family:'Segoe U
 </div>
 
 <script>
+// Переменные включения кнопок
+const discordEnabled = false;   // false = кнопка Discord не редиректит
+const telegramEnabled = false;  // false = кнопка Telegram не редиректит
+const idkEnabled = true;        // true = кнопка idk работает
+
 // Прогрузка сайта 4 секунды
 setTimeout(() => {
     document.getElementById('loader').style.display='none';
@@ -61,12 +66,22 @@ const errorMsg = document.getElementById('errorMsg');
 
 settingsBtn.onclick = () => alert("Error 401: Недоступно");
 
-// Discord
-discordBtn.onclick = () => fadeAndRedirect('https://discord.gg/2myNawMhHa');
-// Telegram
-telegramBtn.onclick = () => fadeAndRedirect('https://t.me/spare_link');
-// idk
-idkBtn.onclick = () => alert('idk pressed!');
+discordBtn.onclick = () => {
+    if(discordEnabled){
+        fadeAndRedirect('https://discord.gg/2myNawMhHa');
+    } else showError();
+}
+
+telegramBtn.onclick = () => {
+    if(telegramEnabled){
+        fadeAndRedirect('https://t.me/spare_link');
+    } else showError();
+}
+
+idkBtn.onclick = () => {
+    if(idkEnabled) alert('idk pressed!');
+    else showError();
+}
 
 // Got Script
 let scriptVisible = false;
@@ -88,6 +103,13 @@ function copyScript(){
 function fadeAndRedirect(url){
     document.querySelectorAll('.btn').forEach(b => b.classList.add('fade-out'));
     setTimeout(()=> window.location.href = url, 500);
+}
+
+// Показ ошибки
+function showError(){
+    errorMsg.innerText = "This function is not available.\n(Maybe Site/html on update xD)";
+    errorMsg.style.display = 'block';
+    setTimeout(()=>{ errorMsg.style.display='none'; },3000);
 }
 </script>
 
