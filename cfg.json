@@ -1,7 +1,7 @@
 {
   "enabled": true,
   "Site": true,
-  "Discord": false,
-  "Telegram": false,
+  "Discord": true,
+  "Telegram": true,
   "Idk": true
 }
