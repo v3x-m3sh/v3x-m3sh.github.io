@@ -14,120 +14,136 @@
             margin: 0;
             overflow: hidden;
             height: 100vh; width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: white;
         }
 
+        /* Тот самый интерактивный фон на весь экран */
         .bg-layer {
             position: fixed; inset: 0;
             background: radial-gradient(circle 250px at var(--x, 50%) var(--y, 50%), #0a1329 0%, #02040a 100%);
-            z-index: -2;
+            z-index: -1;
+        }
+        .grid-layer {
+            position: fixed; inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
         }
 
+        /* ФИКСИРОВАННЫЙ КОНТЕЙНЕР (1600x900) */
+        .main-container {
+            width: 1600px;
+            height: 900px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 25px; /* Твои отступы от краев */
+            pointer-events: none; /* Чтобы фон под ним реагировал на мышь */
+        }
+        .main-container > * { pointer-events: auto; }
+
         .glass {
-            background: rgba(10, 11, 15, 0.85);
-            backdrop-filter: blur(35px);
+            background: rgba(10, 11, 15, 0.88);
+            backdrop-filter: blur(40px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
+            border-radius: 26px;
         }
 
         .inner-content {
-            background: #000; border-radius: 18px;
+            background: #000; border-radius: 20px;
             margin: 4px; height: calc(100% - 8px); width: calc(100% - 8px);
             overflow: hidden;
         }
 
-        /* Главный контейнер с отступами 25px */
-        .wrapper {
-            position: absolute;
-            inset: 25px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        /* Слайдер */
         .slider-btn {
-            opacity: 0;
-            transition: all 0.3s;
-            background: rgba(0,0,0,0.7);
+            opacity: 0; transition: all 0.3s;
+            background: rgba(0,0,0,0.8);
             border: 1px solid rgba(255,255,255,0.1);
         }
         .preview-container:hover .slider-btn { opacity: 1; }
-        
-        .copy-btn:active { transform: scale(0.9); }
     </style>
 </head>
 <body>
 
     <div class="bg-layer"></div>
+    <div class="grid-layer"></div>
 
-    <div class="wrapper">
-        <div class="flex justify-end items-start w-full">
-            <div class="glass px-12 py-6 text-right">
-                <h1 class="text-2xl font-medium text-gray-400 tracking-tighter">synity.dev</h1>
-                <p class="text-[10px] text-gray-700 tracking-[0.15em] uppercase mt-1">created by - lixeal | tester - hashelya</p>
+    <div class="main-container">
+        
+        <div class="flex justify-end">
+            <div class="glass px-12 py-7 text-right">
+                <h1 class="text-2xl font-medium text-gray-500 tracking-tighter">synity.dev</h1>
+                <p class="text-[10px] text-gray-800 tracking-[0.2em] uppercase mt-1 font-semibold">created by - lixeal | tester - hashelya</p>
             </div>
         </div>
 
-        <div class="flex justify-between items-end w-full h-full mt-6">
+        <div class="flex justify-between items-end h-[740px]">
             
-            <div class="flex flex-col gap-5 w-[550px] h-full">
-                <div class="flex gap-5 h-[200px]">
-                    <div class="w-[150px] glass p-1">
+            <div class="flex flex-col gap-6 w-[540px] h-full">
+                <div class="flex gap-6 h-[200px]">
+                    <div class="w-[160px] glass p-1">
                         <div class="inner-content"><img src="gradient.png" class="w-full h-full object-cover"></div>
                     </div>
                     <div class="flex-1 glass p-8 flex flex-col justify-center">
-                        <span class="text-gray-600 text-[12px] uppercase tracking-widest font-semibold">Supported</span>
+                        <span class="text-gray-600 text-[12px] uppercase tracking-widest font-bold">Supported</span>
                         <span class="text-4xl font-semibold mt-1">9+ Games</span>
                     </div>
                 </div>
 
-                <div class="flex gap-5 flex-1">
-                    <div class="flex-[1.5] flex flex-col gap-5">
+                <div class="flex gap-6 flex-1">
+                    <div class="flex-[1.4] flex flex-col gap-6">
                         <div class="flex-1 glass p-10 flex flex-col justify-center items-center text-center">
-                            <h2 class="tracking-[0.5em] text-xl font-semibold">SYNITY</h2>
-                            <h2 class="tracking-[0.5em] text-xl font-semibold opacity-10">SYNITY</h2>
-                            <p class="text-gray-500 text-sm mt-6">Free hub with our UI<br>Every week update</p>
+                            <h2 class="tracking-[0.6em] text-xl font-bold">SYNITY</h2>
+                            <h2 class="tracking-[0.6em] text-xl font-bold opacity-5">SYNITY</h2>
+                            <p class="text-gray-500 text-sm mt-8 leading-relaxed">Free hub with our UI<br>Every week update</p>
                         </div>
-                        <div class="h-[120px] glass flex items-center justify-center">
-                            <p class="text-gray-400 text-xs uppercase tracking-[0.3em] font-mono">Build | v2.1.55</p>
+                        <div class="h-[110px] glass flex items-center justify-center">
+                            <p class="text-gray-500 text-xs uppercase tracking-[0.4em] font-mono">Build | v2.1.55</p>
                         </div>
                     </div>
                     <div class="flex-1 glass p-8">
-                        <h3 class="text-[12px] uppercase text-gray-500 mb-6 font-semibold tracking-wider">Changelogs</h3>
-                        <ul class="text-[11px] space-y-4 text-gray-400">
-                            <li>• Vercel Deployment</li>
-                            <li>• UI Enhancements</li>
-                            <li>• Multi-game Support</li>
-                            <li>• Bug Fixes</li>
+                        <h3 class="text-[11px] uppercase text-gray-600 mb-6 font-bold tracking-widest">Changelogs</h3>
+                        <ul class="text-[11px] space-y-5 text-gray-500 font-medium">
+                            <li>• Vercel Hosting</li>
+                            <li>• Interactive Grid</li>
+                            <li>• Multi-Preview</li>
+                            <li>• UI Optimized</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="h-[100px] glass flex justify-center items-center gap-[35px] px-10">
-                    <a href="https://discord.gg/SAmwBjXpHc" target="_blank" class="text-[11px] tracking-[0.25em] opacity-40 hover:opacity-100 transition-all font-semibold">DISCORD</a>
-                    <a href="https://t.me/xellar_spare" target="_blank" class="text-[11px] tracking-[0.25em] opacity-40 hover:opacity-100 transition-all font-semibold">TELEGRAM</a>
-                    <a href="https://github.com/lixeal/xllr/tree/home" target="_blank" class="text-[11px] tracking-[0.25em] opacity-40 hover:opacity-100 transition-all font-semibold">GITHUB</a>
+                <div class="h-[90px] glass flex justify-center items-center gap-[35px]">
+                    <a href="https://discord.gg/SAmwBjXpHc" target="_blank" class="text-[11px] tracking-[0.2em] opacity-40 hover:opacity-100 transition-all font-bold">DISCORD</a>
+                    <a href="https://t.me/xellar_spare" target="_blank" class="text-[11px] tracking-[0.2em] opacity-40 hover:opacity-100 transition-all font-bold">TELEGRAM</a>
+                    <a href="https://github.com/lixeal/xllr/tree/home" target="_blank" class="text-[11px] tracking-[0.2em] opacity-40 hover:opacity-100 transition-all font-bold">GITHUB</a>
                 </div>
             </div>
 
-            <div class="flex flex-col w-[950px] glass overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)]">
-                <div class="p-6 flex justify-between items-center bg-white/[0.03] border-b border-white/5">
-                    <span class="font-semibold text-xl tracking-wide ml-2">Get Script</span>
-                    <div class="flex items-center gap-5 bg-black/80 px-5 py-3 rounded-xl border border-white/10">
-                        <code class="text-[12px] text-gray-500 font-mono">synity.vercel.app/op</code>
-                        <button onclick="copyScript()" class="copy-btn hover:text-white text-gray-500 transition-all">
+            <div class="flex flex-col w-[980px] glass overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.7)]">
+                <div class="p-7 flex justify-between items-center bg-white/[0.02] border-b border-white/5">
+                    <div class="flex flex-col ml-2">
+                        <span class="font-semibold text-xl tracking-wide">Get Script</span>
+                        <span class="text-[9px] text-gray-700 uppercase tracking-widest">Global Access</span>
+                    </div>
+                    <div class="flex items-center gap-6 bg-black/80 px-6 py-3.5 rounded-2xl border border-white/10">
+                        <code class="text-[13px] text-gray-500 font-mono">synity.vercel.app/op</code>
+                        <button onclick="copyScript()" class="hover:scale-125 transition-all active:scale-95 text-gray-500 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                         </button>
                     </div>
                 </div>
                 
-                <div class="preview-container relative p-1 h-[530px] group">
+                <div class="preview-container relative p-1 h-[550px] group">
                     <div class="inner-content relative">
                         <img id="slider-img" src="preview1.png" class="w-full h-full object-cover transition-opacity duration-500">
-                        
-                        <button onclick="prevSlide()" class="slider-btn absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-light hover:bg-white/10">&lt;</button>
-                        <button onclick="nextSlide()" class="slider-btn absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-light hover:bg-white/10">&gt;</button>
+                        <button onclick="prevSlide()" class="slider-btn absolute left-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full flex items-center justify-center text-4xl font-thin hover:bg-white/5">&lt;</button>
+                        <button onclick="nextSlide()" class="slider-btn absolute right-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full flex items-center justify-center text-4xl font-thin hover:bg-white/5">&gt;</button>
                     </div>
                 </div>
             </div>
@@ -136,13 +152,11 @@
     </div>
 
     <script>
-        // Эффект фонарика
         window.addEventListener('mousemove', (e) => {
             document.body.style.setProperty('--x', e.clientX + 'px');
             document.body.style.setProperty('--y', e.clientY + 'px');
         });
 
-        // Слайдер
         let currentIdx = 1;
         const totalSlides = 5;
         const imgElement = document.getElementById('slider-img');
@@ -165,7 +179,6 @@
             updateSlide();
         }
 
-        // Копирование
         function copyScript() {
             navigator.clipboard.writeText('loadstring(game:HttpGet("https://synity.vercel.app/op"))()');
         }
