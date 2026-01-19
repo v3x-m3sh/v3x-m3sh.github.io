@@ -19,127 +19,130 @@
 
         .bg-layer {
             position: fixed; inset: 0;
-            background: radial-gradient(circle 200px at var(--x, 50%) var(--y, 50%), #0a1329 0%, #02040a 100%);
+            background: radial-gradient(circle 250px at var(--x, 50%) var(--y, 50%), #0a1329 0%, #02040a 100%);
             z-index: -2;
         }
 
         .glass {
-            background: rgba(10, 11, 15, 0.8);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 20px;
+            background: rgba(10, 11, 15, 0.85);
+            backdrop-filter: blur(35px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
         }
 
         .inner-content {
-            background: #000; border-radius: 14px;
+            background: #000; border-radius: 18px;
             margin: 4px; height: calc(100% - 8px); width: calc(100% - 8px);
             overflow: hidden;
         }
 
-        /* Позиционирование */
-        .main-layout {
-            position: absolute; inset: 25px;
-            display: grid;
-            grid-template-columns: 550px 1fr;
-            grid-template-rows: auto 1fr;
-            gap: 20px;
+        /* Главный контейнер с отступами 25px */
+        .wrapper {
+            position: absolute;
+            inset: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         /* Слайдер */
         .slider-btn {
             opacity: 0;
-            transition: opacity 0.3s, background 0.3s;
-            background: rgba(0,0,0,0.6);
+            transition: all 0.3s;
+            background: rgba(0,0,0,0.7);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .preview-container:hover .slider-btn { opacity: 1; }
+        
+        .copy-btn:active { transform: scale(0.9); }
     </style>
 </head>
 <body>
 
     <div class="bg-layer"></div>
 
-    <div class="main-layout">
-        
-        <div class="flex flex-col gap-4 h-full">
-            <div class="flex gap-4 h-[180px]">
-                <div class="w-[140px] glass p-1">
-                    <div class="inner-content"><img src="gradient.png" class="w-full h-full object-cover"></div>
-                </div>
-                <div class="flex-1 glass p-6 flex flex-col justify-center">
-                    <span class="text-gray-600 text-[11px] uppercase tracking-widest">Supported</span>
-                    <span class="text-3xl font-semibold">9+ Games</span>
-                </div>
-            </div>
-
-            <div class="flex gap-4 flex-1">
-                <div class="flex-[1.5] flex flex-col gap-4">
-                    <div class="flex-1 glass p-8 flex flex-col justify-center items-center text-center">
-                        <h2 class="tracking-[0.4em] text-lg font-semibold">SYNITY</h2>
-                        <h2 class="tracking-[0.4em] text-lg font-semibold opacity-10">SYNITY</h2>
-                        <p class="text-gray-500 text-xs mt-4">Free hub with our UI</p>
-                    </div>
-                    <div class="h-[100px] glass flex items-center justify-center">
-                        <p class="text-gray-400 text-xs uppercase tracking-widest font-mono">Build | v2.1.55</p>
-                    </div>
-                </div>
-                <div class="flex-1 glass p-6">
-                    <h3 class="text-[11px] uppercase text-gray-500 mb-4">Changelogs</h3>
-                    <ul class="text-[10px] space-y-2 text-gray-400">
-                        <li>• New Vercel Deploy</li>
-                        <li>• Collab with Dara</li>
-                        <li>• Fixed ESP Glow</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="h-[80px] glass flex justify-around items-center px-10">
-                <a href="https://discord.gg/SAmwBjXpHc" class="text-[11px] tracking-widest opacity-40 hover:opacity-100 transition-all">DISCORD</a>
-                <a href="https://t.me/xellar_spare" class="text-[11px] tracking-widest opacity-40 hover:opacity-100 transition-all">TELEGRAM</a>
-                <a href="https://github.com/lixeal/xllr/tree/home" class="text-[11px] tracking-widest opacity-40 hover:opacity-100 transition-all">GITHUB</a>
+    <div class="wrapper">
+        <div class="flex justify-end items-start w-full">
+            <div class="glass px-12 py-6 text-right">
+                <h1 class="text-2xl font-medium text-gray-400 tracking-tighter">synity.dev</h1>
+                <p class="text-[10px] text-gray-700 tracking-[0.15em] uppercase mt-1">created by - lixeal | tester - hashelya</p>
             </div>
         </div>
 
-        <div class="flex flex-col gap-4 relative">
-            <div class="flex justify-end">
-                <div class="glass px-10 py-5 text-right">
-                    <h1 class="text-xl font-medium text-gray-400 tracking-tighter">synity.dev</h1>
-                    <p class="text-[9px] text-gray-700 tracking-[0.1em] uppercase mt-1">created by - lixeal | tester - hashelya</p>
+        <div class="flex justify-between items-end w-full h-full mt-6">
+            
+            <div class="flex flex-col gap-5 w-[550px] h-full">
+                <div class="flex gap-5 h-[200px]">
+                    <div class="w-[150px] glass p-1">
+                        <div class="inner-content"><img src="gradient.png" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="flex-1 glass p-8 flex flex-col justify-center">
+                        <span class="text-gray-600 text-[12px] uppercase tracking-widest font-semibold">Supported</span>
+                        <span class="text-4xl font-semibold mt-1">9+ Games</span>
+                    </div>
+                </div>
+
+                <div class="flex gap-5 flex-1">
+                    <div class="flex-[1.5] flex flex-col gap-5">
+                        <div class="flex-1 glass p-10 flex flex-col justify-center items-center text-center">
+                            <h2 class="tracking-[0.5em] text-xl font-semibold">SYNITY</h2>
+                            <h2 class="tracking-[0.5em] text-xl font-semibold opacity-10">SYNITY</h2>
+                            <p class="text-gray-500 text-sm mt-6">Free hub with our UI<br>Every week update</p>
+                        </div>
+                        <div class="h-[120px] glass flex items-center justify-center">
+                            <p class="text-gray-400 text-xs uppercase tracking-[0.3em] font-mono">Build | v2.1.55</p>
+                        </div>
+                    </div>
+                    <div class="flex-1 glass p-8">
+                        <h3 class="text-[12px] uppercase text-gray-500 mb-6 font-semibold tracking-wider">Changelogs</h3>
+                        <ul class="text-[11px] space-y-4 text-gray-400">
+                            <li>• Vercel Deployment</li>
+                            <li>• UI Enhancements</li>
+                            <li>• Multi-game Support</li>
+                            <li>• Bug Fixes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="h-[100px] glass flex justify-center items-center gap-[35px] px-10">
+                    <a href="https://discord.gg/SAmwBjXpHc" target="_blank" class="text-[11px] tracking-[0.25em] opacity-40 hover:opacity-100 transition-all font-semibold">DISCORD</a>
+                    <a href="https://t.me/xellar_spare" target="_blank" class="text-[11px] tracking-[0.25em] opacity-40 hover:opacity-100 transition-all font-semibold">TELEGRAM</a>
+                    <a href="https://github.com/lixeal/xllr/tree/home" target="_blank" class="text-[11px] tracking-[0.25em] opacity-40 hover:opacity-100 transition-all font-semibold">GITHUB</a>
                 </div>
             </div>
 
-            <div class="flex-1 flex flex-col justify-end">
-                <div class="glass flex flex-col w-[900px] self-end overflow-hidden shadow-2xl">
-                    <div class="p-5 flex justify-between items-center bg-white/[0.02] border-b border-white/5">
-                        <span class="font-semibold text-lg tracking-wide ml-2">Get Script</span>
-                        <div class="flex items-center gap-4 bg-black/80 px-4 py-2 rounded-xl border border-white/5">
-                            <code class="text-[10px] text-gray-500 font-mono">synity.vercel.app/op</code>
-                            <button onclick="copyScript()" class="hover:text-white text-gray-500 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                            </button>
-                        </div>
+            <div class="flex flex-col w-[950px] glass overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)]">
+                <div class="p-6 flex justify-between items-center bg-white/[0.03] border-b border-white/5">
+                    <span class="font-semibold text-xl tracking-wide ml-2">Get Script</span>
+                    <div class="flex items-center gap-5 bg-black/80 px-5 py-3 rounded-xl border border-white/10">
+                        <code class="text-[12px] text-gray-500 font-mono">synity.vercel.app/op</code>
+                        <button onclick="copyScript()" class="copy-btn hover:text-white text-gray-500 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                        </button>
                     </div>
-                    
-                    <div class="preview-container relative p-1 h-[500px] group">
-                        <div class="inner-content relative">
-                            <img id="slider-img" src="preview1.png" class="w-full h-full object-cover transition-opacity duration-500">
-                            
-                            <button onclick="prevSlide()" class="slider-btn absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center text-2xl font-light hover:bg-white/10">&lt;</button>
-                            <button onclick="nextSlide()" class="slider-btn absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center text-2xl font-light hover:bg-white/10">&gt;</button>
-                        </div>
+                </div>
+                
+                <div class="preview-container relative p-1 h-[530px] group">
+                    <div class="inner-content relative">
+                        <img id="slider-img" src="preview1.png" class="w-full h-full object-cover transition-opacity duration-500">
+                        
+                        <button onclick="prevSlide()" class="slider-btn absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-light hover:bg-white/10">&lt;</button>
+                        <button onclick="nextSlide()" class="slider-btn absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-light hover:bg-white/10">&gt;</button>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
     <script>
-        // Движение мыши
+        // Эффект фонарика
         window.addEventListener('mousemove', (e) => {
             document.body.style.setProperty('--x', e.clientX + 'px');
             document.body.style.setProperty('--y', e.clientY + 'px');
         });
 
-        // Логика слайдера
+        // Слайдер
         let currentIdx = 1;
         const totalSlides = 5;
         const imgElement = document.getElementById('slider-img');
@@ -162,6 +165,7 @@
             updateSlide();
         }
 
+        // Копирование
         function copyScript() {
             navigator.clipboard.writeText('loadstring(game:HttpGet("https://synity.vercel.app/op"))()');
         }
