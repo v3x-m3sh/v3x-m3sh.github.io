@@ -20,7 +20,7 @@
         /* Интерактивный фон */
         .bg-layer {
             position: fixed; inset: 0;
-            background: radial-gradient(circle 200px at var(--x, 50%) var(--y, 50%), #0a1329 0%, #02040a 100%);
+            background: radial-gradient(circle 250px at var(--x, 50%) var(--y, 50%), #0a1329 0%, #02040a 100%);
             z-index: -2;
         }
         .grid-layer {
@@ -45,33 +45,28 @@
             overflow: hidden;
         }
 
-        /* Позиционирование по углам (отступ 25px) */
+        /* Позиционирование */
         .left-side {
             position: absolute;
-            left: 25px; bottom: 25px;
-            top: 25px; /* Тянется сверху до низу */
+            left: 25px; bottom: 25px; top: 25px;
             width: 550px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .top-right {
-            position: absolute;
-            right: 25px; top: 25px;
+        .top-right { position: absolute; right: 25px; top: 25px; }
+        .bottom-right { position: absolute; right: 25px; bottom: 25px; width: 950px; }
+
+        /* Разделительная палочка */
+        .divider {
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1), transparent);
+            height: 80%;
+            align-self: center;
         }
 
-        .bottom-right {
-            position: absolute;
-            right: 25px; bottom: 25px;
-            width: 950px;
-        }
-
-        /* Кнопки слайдера */
-        .slider-btn {
-            opacity: 0; transition: all 0.3s;
-            background: rgba(0,0,0,0.8);
-        }
+        .slider-btn { opacity: 0; transition: all 0.3s; background: rgba(0,0,0,0.8); }
         .preview-container:hover .slider-btn { opacity: 1; }
     </style>
 </head>
@@ -81,35 +76,37 @@
     <div class="grid-layer"></div>
 
     <div class="left-side">
-        <div class="flex gap-5 h-[200px]">
-            <div class="w-[150px] glass p-1">
+        <div class="flex gap-5 h-[180px]">
+            <div class="w-[140px] glass p-1">
                 <div class="inner-content"><img src="gradient.png" class="w-full h-full object-cover"></div>
             </div>
             <div class="flex-1 glass p-8 flex flex-col justify-center">
-                <span class="text-gray-600 text-[12px] uppercase tracking-widest font-bold">Supported</span>
-                <span class="text-4xl font-semibold mt-1">9+ Games</span>
+                <span class="text-gray-600 text-[11px] uppercase tracking-widest font-bold">Supported</span>
+                <span class="text-3xl font-semibold mt-1">9+ Games</span>
             </div>
         </div>
 
-        <div class="flex gap-5 flex-1">
-            <div class="flex-[1.5] flex flex-col gap-5">
-                <div class="flex-1 glass p-10 flex flex-col justify-center items-center text-center">
+        <div class="flex-1 glass flex p-1">
+            <div class="inner-content w-full h-full flex p-8 gap-8">
+                <div class="flex-[1.2] flex flex-col justify-center items-center text-center">
                     <h2 class="tracking-[0.6em] text-xl font-bold">SYNITY</h2>
                     <h2 class="tracking-[0.6em] text-xl font-bold opacity-5">SYNITY</h2>
-                    <p class="text-gray-500 text-sm mt-8 leading-relaxed">Free hub with our UI<br>Every week update</p>
+                    <p class="text-gray-500 text-xs mt-6 leading-relaxed uppercase tracking-wider">Free hub with our UI<br>Every week update</p>
+                    <div class="mt-auto opacity-30 text-[10px] tracking-[0.3em] font-mono">BUILD | V2.1.55</div>
                 </div>
-                <div class="h-[120px] glass flex items-center justify-center">
-                    <p class="text-gray-500 text-xs uppercase tracking-[0.4em] font-mono">Build | v2.1.55</p>
+
+                <div class="divider"></div>
+
+                <div class="flex-1 flex flex-col justify-start pt-4">
+                    <h3 class="text-[10px] uppercase text-gray-600 mb-6 font-bold tracking-widest">Changelogs</h3>
+                    <ul class="text-[10px] space-y-4 text-gray-500 font-medium">
+                        <li>• Unified Dashboard</li>
+                        <li>• Glass UI Fixes</li>
+                        <li>• Script Hub v2</li>
+                        <li>• Performance +</li>
+                        <li>• Slider Engine</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="flex-1 glass p-8">
-                <h3 class="text-[11px] uppercase text-gray-600 mb-6 font-bold tracking-widest">Changelogs</h3>
-                <ul class="text-[11px] space-y-5 text-gray-500">
-                    <li>• Vercel Hosting</li>
-                    <li>• Slider Preview</li>
-                    <li>• UI Glassmorphism</li>
-                    <li>• Copy Function</li>
-                </ul>
             </div>
         </div>
 
@@ -122,7 +119,7 @@
 
     <div class="top-right">
         <div class="glass px-12 py-7 text-right">
-            <h1 class="text-2xl font-medium text-gray-500 tracking-tighter">synity.dev</h1>
+            <h1 class="text-2xl font-medium text-gray-400 tracking-tighter">synity.dev</h1>
             <p class="text-[10px] text-gray-800 tracking-[0.2em] uppercase mt-1 font-semibold">created by - lixeal | tester - hashelya</p>
         </div>
     </div>
@@ -142,8 +139,8 @@
             <div class="preview-container relative p-1 h-[530px] group">
                 <div class="inner-content relative">
                     <img id="slider-img" src="preview1.png" class="w-full h-full object-cover transition-opacity duration-500">
-                    <button onclick="prevSlide()" class="slider-btn absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-light hover:bg-white/10">&lt;</button>
-                    <button onclick="nextSlide()" class="slider-btn absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-light hover:bg-white/10">&gt;</button>
+                    <button onclick="prevSlide()" class="slider-btn absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-light hover:bg-white/10 text-white/50">&lt;</button>
+                    <button onclick="nextSlide()" class="slider-btn absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-light hover:bg-white/10 text-white/50">&gt;</button>
                 </div>
             </div>
         </div>
@@ -167,15 +164,8 @@
             }, 300);
         }
 
-        function nextSlide() {
-            currentIdx = currentIdx >= totalSlides ? 1 : currentIdx + 1;
-            updateSlide();
-        }
-
-        function prevSlide() {
-            currentIdx = currentIdx <= 1 ? totalSlides : currentIdx - 1;
-            updateSlide();
-        }
+        function nextSlide() { currentIdx = currentIdx >= totalSlides ? 1 : currentIdx + 1; updateSlide(); }
+        function prevSlide() { currentIdx = currentIdx <= 1 ? totalSlides : currentIdx - 1; updateSlide(); }
 
         function copyScript() {
             navigator.clipboard.writeText('loadstring(game:HttpGet("https://synity.vercel.app/op"))()');
