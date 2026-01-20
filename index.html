@@ -46,11 +46,20 @@
         .top-right { position: absolute; right: 25px; top: 25px; }
         .bottom-right { position: absolute; right: 25px; bottom: 25px; width: 950px; }
 
+        /* Эффект тени для лого */
+        .logo-container { position: relative; }
+        .logo-shadow {
+            position: absolute; top: 2px; left: 0;
+            color: rgba(255,255,255,0.05); z-index: -1;
+            filter: blur(1px);
+        }
+
         .exploit-row { display: grid; grid-template-columns: 95px 8px 1fr; gap: 6px; align-items: center; padding: 2px 0; }
         .status-working { color: #4ade80; font-weight: 600; text-transform: uppercase; font-size: 8px; letter-spacing: 0.3px; }
         .status-unknown { color: #fbbf24; font-weight: 600; text-transform: uppercase; font-size: 8px; opacity: 0.6; }
         .status-dead { color: #ef4444; font-weight: 600; text-transform: uppercase; font-size: 8px; opacity: 0.5; }
         .status-dev { color: #6366f1; font-weight: 600; text-transform: uppercase; font-size: 8px; opacity: 0.8; }
+        
         .exploit-name { color: rgba(255,255,255,0.7); font-size: 11px; }
         .cat-label { font-size: 10px; color: #6366f1; font-weight: bold; margin-top: 16px; margin-bottom: 6px; opacity: 0.9; text-transform: uppercase; border-bottom: 1px solid rgba(99, 102, 241, 0.15); display: block; padding-bottom: 2px; }
 
@@ -89,12 +98,13 @@
         </div>
 
         <div class="flex-1 glass p-6 flex flex-col overflow-hidden">
-            <div class="flex justify-between items-center">
-                <div class="text-left">
+            <div class="flex justify-between items-start">
+                <div class="logo-container">
                     <h2 class="tracking-[0.5em] text-lg font-bold">SYNITY</h2>
-                    <p class="text-[8px] text-gray-600 uppercase tracking-[0.3em] font-bold">Shield Protection: Active</p>
+                    <h2 class="tracking-[0.5em] text-lg font-bold logo-shadow">SYNITY</h2>
+                    <p class="text-[8px] text-gray-600 uppercase tracking-[0.3em] font-bold mt-1">Shield Protection: Active</p>
                 </div>
-                <span class="text-[9px] text-gray-600 font-mono tracking-widest uppercase">Database v2.7</span>
+                <span class="text-[9px] text-gray-600 font-mono tracking-widest uppercase">Database v2.9</span>
             </div>
 
             <div class="h-[1px] w-full bg-white/5 my-4"></div>
@@ -115,9 +125,16 @@
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">LX63</span></div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">JJsploit</span></div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Ronix</span></div>
-                    <div class="exploit-row"><span class="status-dead">RIP</span><span class="opacity-20">|</span><span class="exploit-name">Nihon</span></div>
-                    <div class="exploit-row"><span class="status-dead">RIP</span><span class="opacity-20">|</span><span class="exploit-name">OxygenU</span></div>
-                    <div class="exploit-row"><span class="status-dead">RIP</span><span class="opacity-20">|</span><span class="exploit-name">KRNL</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Celery</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Carbon</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Skisploit</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Drift</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Bunni</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Valex</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Volcano</span></div>
+                    <div class="exploit-row"><span class="status-dead">Discontinued</span><span class="opacity-20">|</span><span class="exploit-name">Nihon</span></div>
+                    <div class="exploit-row"><span class="status-dead">Discontinued</span><span class="opacity-20">|</span><span class="exploit-name">OxygenU</span></div>
+                    <div class="exploit-row"><span class="status-dead">Discontinued</span><span class="opacity-20">|</span><span class="exploit-name">KRNL</span></div>
 
                     <div class="cat-label">PC PAID</div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Synapse Z</span></div>
@@ -131,14 +148,18 @@
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Ronin</span></div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Wave</span></div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">ScriptWare</span></div>
-                    <div class="exploit-row"><span class="status-dead">RIP</span><span class="opacity-20">|</span><span class="exploit-name">Synapse X</span></div>
+                    <div class="exploit-row"><span class="status-dead">Discontinued</span><span class="opacity-20">|</span><span class="exploit-name">Synapse X</span></div>
 
                     <div class="cat-label">ANDROID FREE / KEY</div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Ronix</span></div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Fluxus</span></div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Fluxus Z</span></div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Punk X</span></div>
-                    <div class="exploit-row"><span class="status-dead">RIP</span><span class="opacity-20">|</span><span class="exploit-name">KRNL</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Arceus X</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Codex</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Delta X</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Vega X</span></div>
+                    <div class="exploit-row"><span class="status-dead">Discontinued</span><span class="opacity-20">|</span><span class="exploit-name">KRNL</span></div>
 
                     <div class="cat-label">ANDROID PAID</div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">NCE</span></div>
@@ -148,13 +169,16 @@
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Ronix</span></div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Hydrogen</span></div>
                     <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">iExecutor</span></div>
-                    <div class="exploit-row"><span class="status-dead">RIP</span><span class="opacity-20">|</span><span class="exploit-name">Nihon</span></div>
-                    <div class="exploit-row"><span class="status-dead">RIP</span><span class="opacity-20">|</span><span class="exploit-name">KRNL</span></div>
-                    <div class="exploit-row"><span class="status-dead">RIP</span><span class="opacity-20">|</span><span class="exploit-name">ScriptWare</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">AppleWare</span></div>
+                    <div class="exploit-row"><span class="status-dead">Discontinued</span><span class="opacity-20">|</span><span class="exploit-name">Nihon</span></div>
+                    <div class="exploit-row"><span class="status-dead">Discontinued</span><span class="opacity-20">|</span><span class="exploit-name">KRNL</span></div>
+                    <div class="exploit-row"><span class="status-dead">Discontinued</span><span class="opacity-20">|</span><span class="exploit-name">ScriptWare</span></div>
 
                     <div class="cat-label">MacOS FREE / KEY</div>
                     <div class="exploit-row"><span class="status-dev">In Dev</span><span class="opacity-20">|</span><span class="exploit-name">Ronix</span></div>
-                    <div class="exploit-row"><span class="status-dead">RIP</span><span class="opacity-20">|</span><span class="exploit-name">Fluxus</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">MacSploit</span></div>
+                    <div class="exploit-row"><span class="status-unknown">Unknown</span><span class="opacity-20">|</span><span class="exploit-name">Hydrogen</span></div>
+                    <div class="exploit-row"><span class="status-dead">Discontinued</span><span class="opacity-20">|</span><span class="exploit-name">Fluxus</span></div>
                 </div>
 
                 <div class="w-[1px] bg-white/5 h-full"></div>
